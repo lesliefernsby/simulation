@@ -51,7 +51,7 @@ public class BFSPathFinderService implements PathFinderService {
             path.add(visiting);
 
             if (isGrassNear(visiting) != null) break;
-            toVisit.addAll(emptyCellsNear(visiting));
+            toVisit.addAll(emptyCellsNear(visiting).stream().filter(c -> !path.contains(c)).collect(Collectors.toList()));
         }
 
         return path;
@@ -69,7 +69,7 @@ public class BFSPathFinderService implements PathFinderService {
             path.add(visiting);
 
             if (isPreyNear(visiting) != null) break;
-            toVisit.addAll(emptyCellsNear(visiting));
+            toVisit.addAll(emptyCellsNear(visiting).stream().filter(c -> !path.contains(c)).collect(Collectors.toList()));
         }
 
         return path;
